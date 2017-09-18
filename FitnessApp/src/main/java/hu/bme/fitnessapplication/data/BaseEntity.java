@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.user;
+package hu.bme.fitnessapplication.data;
 
 import java.io.Serializable;
 import java.util.UUID;

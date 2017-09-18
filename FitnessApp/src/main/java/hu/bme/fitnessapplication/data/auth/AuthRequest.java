@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.auth.data;
+package hu.bme.fitnessapplication.data.auth;
 
 public class AuthRequest {
 

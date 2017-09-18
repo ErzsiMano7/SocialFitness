@@ -1,13 +1,12 @@
-package hu.bme.fitnessapplication.auth;
+package hu.bme.fitnessapplication.service.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hu.bme.fitnessapplication.auth.data.AuthRequest;
-import hu.bme.fitnessapplication.auth.data.AuthToken;
-import hu.bme.fitnessapplication.auth.data.AuthTokenMapper;
-import hu.bme.fitnessapplication.auth.user.UserService;
-import hu.bme.fitnessapplication.user.User;
+import hu.bme.fitnessapplication.data.auth.AuthRequest;
+import hu.bme.fitnessapplication.data.auth.AuthToken;
+import hu.bme.fitnessapplication.data.user.User;
+import hu.bme.fitnessapplication.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

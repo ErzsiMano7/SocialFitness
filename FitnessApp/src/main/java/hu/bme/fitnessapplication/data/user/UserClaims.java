@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.user.claims;
+package hu.bme.fitnessapplication.data.user;
 
 import lombok.Getter;
 import lombok.Setter;

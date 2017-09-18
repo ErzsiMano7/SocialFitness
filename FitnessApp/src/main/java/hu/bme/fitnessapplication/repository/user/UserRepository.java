@@ -1,10 +1,10 @@
-package hu.bme.fitnessapplication.auth.user;
+package hu.bme.fitnessapplication.repository.user;
 
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import hu.bme.fitnessapplication.user.User;
+import hu.bme.fitnessapplication.data.user.User;
 
 
 public interface UserRepository extends JpaRepository<User, UUID> {

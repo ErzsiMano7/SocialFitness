@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.user;
+package hu.bme.fitnessapplication.data.user;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import hu.bme.fitnessapplication.data.BaseEntity;
 
 @Entity
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "username") })

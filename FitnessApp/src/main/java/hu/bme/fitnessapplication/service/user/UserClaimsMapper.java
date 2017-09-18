@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.user.claims;
+package hu.bme.fitnessapplication.service.user;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,7 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import hu.bme.fitnessapplication.user.User;
+import hu.bme.fitnessapplication.data.user.User;
+import hu.bme.fitnessapplication.data.user.UserClaims;
 import io.jsonwebtoken.Claims;
 
 @Service
