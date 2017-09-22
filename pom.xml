@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <name>FitnessAppParent</name>
+
+	<parent>
+    	<groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+    	<version>1.5.7.RELEASE</version>
+	</parent>
+
+    <groupId>hu.bme.fitnessapp</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0</version>
+
+    <packaging>pom</packaging>
+    
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+    </properties>
+    
+    <modules>
+    	<module>FitnessServer</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+        </dependency>
+    </dependencies>
+    
+</project>
