@@ -1,8 +1,10 @@
 package hu.bme.fitnessapplication.server.user;
 
 import hu.bme.fitnessapplication.server.BaseService;
+import hu.bme.fitnessapplication.server.user.data.Role;
 import hu.bme.fitnessapplication.server.user.data.User;
-import hu.bme.fitnessapplication.server.user.data.UserDTO;
+import hu.bme.fitnessapplication.server.user.data.UserRequestDTO;
+import hu.bme.fitnessapplication.server.user.data.UserResponseDTO;
 import hu.bme.fitnessapplication.server.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,23 +28,23 @@ public class UserController {
      * @return
      */
     @RequestMapping(path = "/me", method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> getMe() {
+    public ResponseEntity<UserResponseDTO> getMe() {
         User me = userService.getLoggedInUser();
         if (me != null) {
-            return ResponseEntity.ok(new UserDTO(me));
+            return ResponseEntity.ok(new UserResponseDTO(me));
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @RequestMapping(method = RequestMethod.GET )
+    @RequestMapping(method = RequestMethod.GET)
     @Secured("ROLE_ADMIN")
     public ResponseEntity getAllUsers() {
        List<User> users = userService.findAll();
-       List<UserDTO> result = new ArrayList<>();
+       List<UserResponseDTO> result = new ArrayList<>();
 
        for (User user : users) {
-           result.add(new UserDTO(user));
+           result.add(new UserResponseDTO(user));
        }
 
        return ResponseEntity.ok(result);
@@ -51,13 +53,13 @@ public class UserController {
 
     @RequestMapping(path = "/{userId}", method = RequestMethod.GET)
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable String userId) {
+    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable String userId) {
         try {
             UUID id = UUID.fromString(userId);
             User user = userService.findById(id);
 
             if (user != null) {
-                return ResponseEntity.ok(new UserDTO(user));
+                return ResponseEntity.ok(new UserResponseDTO(user));
             } else {
                 return ResponseEntity.notFound().build();
             }
@@ -69,7 +71,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     @Secured("ROLE_ADMIN")
-    public ResponseEntity registerUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity registerUser(@RequestBody UserRequestDTO userDTO) {
         if (userDTO == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -77,7 +79,7 @@ public class UserController {
         try {
             User user = userDTO.toEntity();
             user = userService.create(user);
-            return ResponseEntity.ok(new UserDTO(user));
+            return ResponseEntity.ok(new UserResponseDTO(user));
         } catch (UserService.UsernameAlreadyTakenException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (BaseService.InvalidEntityException e) {
@@ -87,7 +89,7 @@ public class UserController {
 
     @RequestMapping(path = "/{userId}", method = RequestMethod.PUT)
     @Secured("ROLE_ADMIN")
-    public ResponseEntity updateUser(@PathVariable String userId, @RequestBody UserDTO userDTO) {
+    public ResponseEntity updateUser(@PathVariable String userId, @RequestBody UserRequestDTO userDTO) {
         if (userDTO == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -96,7 +98,7 @@ public class UserController {
             UUID id = UUID.fromString(userId);
             User updatedUser = userDTO.toEntity();
             updatedUser = userService.update(id, updatedUser);
-            return ResponseEntity.ok(new UserDTO(updatedUser));
+            return ResponseEntity.ok(new UserResponseDTO(updatedUser));
         } catch (BaseService.EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (BaseService.InvalidEntityException | IllegalArgumentException e) {
@@ -114,5 +116,44 @@ public class UserController {
         } catch (BaseService.EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+    
+    @RequestMapping(path = "/gyms", method = RequestMethod.GET)
+    public ResponseEntity getGyms() {
+    	List<User> users = userService.findAll();
+        List<UserResponseDTO> result = new ArrayList<>();
+
+        for (User user : users) {
+        	if(user.getRole().getRole().name().equals(Role.ROLE_GYM))
+            result.add(new UserResponseDTO(user));
+        }
+
+        return ResponseEntity.ok(result);
+    }
+    
+    @RequestMapping(path = "/trainers", method = RequestMethod.GET)
+    public ResponseEntity getTrainers() {
+    	List<User> users = userService.findAll();
+        List<UserResponseDTO> result = new ArrayList<>();
+
+        for (User user : users) {
+        	if(user.getRole().getRole().name().equals(Role.ROLE_TRAINER))
+            result.add(new UserResponseDTO(user));
+        }
+
+        return ResponseEntity.ok(result);
+    }
+    
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    public ResponseEntity getUsers() {
+    	List<User> users = userService.findAll();
+        List<UserResponseDTO> result = new ArrayList<>();
+
+        for (User user : users) {
+        	if(user.getRole().getRole().name().equals(Role.ROLE_USER))
+            result.add(new UserResponseDTO(user));
+        }
+
+        return ResponseEntity.ok(result);
     }
 }

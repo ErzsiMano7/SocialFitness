@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * Mapping table between users and roles.
@@ -16,19 +16,20 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 public class UserRole extends BaseEntity {
+	private static final long serialVersionUID = 1L;
 
-    @ManyToOne
-    protected User user;
+	@OneToOne
+	protected User user;
 
-    @Enumerated(EnumType.STRING)
-    protected Role role;
+	@Enumerated(EnumType.STRING)
+	protected Role role;
 
-    public UserRole() {
+	public UserRole() {
 
-    }
+	}
 
-    public UserRole(User user, Role role){
-        this.user = user;
-        this.role = role;
-    }
+	public UserRole(User user, Role role) {
+		this.user = user;
+		this.role = role;
+	}
 }

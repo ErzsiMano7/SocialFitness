@@ -4,33 +4,31 @@ import hu.bme.fitnessapplication.server.BaseDTO;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
-public class UserDTO extends BaseDTO<User> {
+public class UserRequestDTO extends BaseDTO<User> {
+	private static final long serialVersionUID = -1410169654429767330L;
 
-    protected String username;
+	protected String username;
 
     protected String password;
+    
+    protected String displayName;
 
-    protected List<String> roles;
+    protected String role;
 
-    public UserDTO() {
+    public UserRequestDTO() {
 
     }
 
-    public UserDTO(User user) {
+    public UserRequestDTO(User user) {
         if (user != null) {
             if (user.getId() != null) {
                 this.id = user.getId().toString();
             }
             this.username = user.getUsername();
-            this.roles = new ArrayList<>();
-            for (UserRole userRole : user.getRoles()) {
-                this.roles.add(userRole.getRole().name());
-            }
+            this.role = user.getRole().getRole().name();
+            this.displayName = user.getDisplayName();
         }
     }
 
@@ -40,11 +38,8 @@ public class UserDTO extends BaseDTO<User> {
 
         user.setUsername(username);
         user.setPassword(password); //This will be encrypted later
-        user.setRoles(new ArrayList<>());
-
-        for (String role : roles) {
-            user.getRoles().add(new UserRole(user, Role.valueOf(role)));
-        }
+        user.setDisplayName(displayName);
+        user.setRole(new UserRole(user, Role.valueOf(role)));
 
         return user;
     }

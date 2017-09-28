@@ -32,8 +32,9 @@ public class UserService implements BaseService<User> {
 
         User admin;
         try {
-            admin = new User("Admin", "1234", null);
-            admin.setRoles(Collections.singletonList(new UserRole(admin, Role.ROLE_ADMIN)));
+            admin = new User("Admin", "1234", "admin", null);
+            
+            admin.setRole(new UserRole(admin, Role.ROLE_ADMIN));
             create(admin);
         } catch (UsernameAlreadyTakenException e) {
             log.debug("User already in database");
@@ -95,8 +96,9 @@ public class UserService implements BaseService<User> {
         updated.setPassword(passwordEncoder.encode(updated.getPassword()));
 
         // Update the existing with the new
+        existing.setDisplayName(updated.getDisplayName());
         existing.setUsername(updated.getUsername());
-        existing.setRoles(updated.getRoles());
+        existing.setRole(updated.getRole());
         existing.setPassword(updated.getPassword());
 
         return userRepository.save(existing);
@@ -118,12 +120,16 @@ public class UserService implements BaseService<User> {
             if (user.getUsername() == null || user.getUsername().isEmpty()) {
                 throw new InvalidEntityException("Username must be set!");
             }
+            
+            if (user.getDisplayName() == null || user.getDisplayName().isEmpty()) {
+                throw new InvalidEntityException("Display name must be set!");
+            }
 
             if (user.getPassword() == null || user.getPassword().isEmpty()) {
                 throw new InvalidEntityException("Password must be set!");
             }
 
-            if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            if (user.getRole() == null) {
                 throw new InvalidEntityException("A user must have at least one role!");
             }
         }
