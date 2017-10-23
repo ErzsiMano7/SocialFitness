@@ -1,5 +1,6 @@
 package hu.bme.fitnessapplication.server.repository.user;
 
+import com.sun.istack.internal.Nullable;
 import hu.bme.fitnessapplication.server.BaseService;
 import hu.bme.fitnessapplication.server.repository.user.model.Role;
 import hu.bme.fitnessapplication.server.repository.user.model.User;
@@ -28,7 +29,6 @@ public class UserService implements BaseService<User> {
     @PostConstruct
     public void injectDummyUser() {
         log.warn("Injecting dummy user!");
-
         User admin;
         try {
             admin = new User("Admin", "1234", "admin", null);
@@ -106,6 +106,11 @@ public class UserService implements BaseService<User> {
         } else {
             throw new EntityNotFoundException();
         }
+    }
+
+    @Nullable
+    public User findByUsername(String username){
+        return userRepository.findByUsername(username);
     }
 
     private void validate(User user) {

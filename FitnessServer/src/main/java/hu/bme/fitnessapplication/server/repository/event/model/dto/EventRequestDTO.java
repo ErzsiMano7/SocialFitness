@@ -1,10 +1,10 @@
-package hu.bme.fitnessapplication.server.repository.event.dto;
+package hu.bme.fitnessapplication.server.repository.event.model.dto;
 
 import java.util.Date;
 import java.util.List;
 
 import hu.bme.fitnessapplication.server.BaseDTO;
-import hu.bme.fitnessapplication.server.repository.event.Event;
+import hu.bme.fitnessapplication.server.repository.event.model.Event;
 import hu.bme.fitnessapplication.server.repository.user.model.User;
 import lombok.Getter;
 import lombok.Setter;

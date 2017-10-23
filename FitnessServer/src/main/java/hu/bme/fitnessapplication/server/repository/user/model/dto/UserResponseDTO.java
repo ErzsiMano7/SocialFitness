@@ -18,10 +18,6 @@ public class UserResponseDTO extends BaseDTO<User> {
     
     protected String displayName;
 
-    public UserResponseDTO() {
-
-    }
-
     public UserResponseDTO(User user) {
         if (user != null) {
             if (user.getId() != null) {

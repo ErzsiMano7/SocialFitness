@@ -1,12 +1,12 @@
-package hu.bme.fitnessapplication.server.endpoint.event;
+package hu.bme.fitnessapplication.server.endpoint.v1.event;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import hu.bme.fitnessapplication.server.repository.event.Event;
-import hu.bme.fitnessapplication.server.repository.event.dto.EventRequestDTO;
-import hu.bme.fitnessapplication.server.repository.event.dto.EventResponseDTO;
+import hu.bme.fitnessapplication.server.repository.event.model.Event;
+import hu.bme.fitnessapplication.server.repository.event.model.dto.EventRequestDTO;
+import hu.bme.fitnessapplication.server.repository.event.model.dto.EventResponseDTO;
 import hu.bme.fitnessapplication.server.repository.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

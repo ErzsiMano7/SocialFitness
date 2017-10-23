@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.server.repository.event;
+package hu.bme.fitnessapplication.server.repository.event.model;
 
 import hu.bme.fitnessapplication.server.BaseEntity;
 import hu.bme.fitnessapplication.server.repository.user.model.User;

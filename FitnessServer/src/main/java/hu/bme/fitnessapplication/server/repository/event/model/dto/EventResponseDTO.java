@@ -1,9 +1,9 @@
-package hu.bme.fitnessapplication.server.repository.event.dto;
+package hu.bme.fitnessapplication.server.repository.event.model.dto;
 
 import java.util.Date;
 import java.util.List;
 
-import hu.bme.fitnessapplication.server.repository.event.Event;
+import hu.bme.fitnessapplication.server.repository.event.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import hu.bme.fitnessapplication.server.BaseDTO;

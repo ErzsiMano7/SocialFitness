@@ -20,8 +20,12 @@ public class UserRequestDTO extends BaseDTO<User> {
 
     protected String role;
 
-    public UserRequestDTO() {
+    public void setRole(Role uRole){
+        role = uRole.name();
+    }
 
+    public Role getRole(){
+        return Role.valueOf(role);
     }
 
     public UserRequestDTO(User user) {

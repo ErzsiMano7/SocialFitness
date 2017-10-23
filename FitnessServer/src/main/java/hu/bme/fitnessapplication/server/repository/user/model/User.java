@@ -9,6 +9,8 @@ import javax.persistence.*;
 
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "User_Type")
 @Entity(name = "fitness_user")
 public class User extends BaseEntity {
 	private static final long serialVersionUID = 7023168094717955429L;

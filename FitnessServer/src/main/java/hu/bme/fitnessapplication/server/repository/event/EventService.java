@@ -3,6 +3,7 @@ package hu.bme.fitnessapplication.server.repository.event;
 import java.util.List;
 import java.util.UUID;
 
+import hu.bme.fitnessapplication.server.repository.event.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
