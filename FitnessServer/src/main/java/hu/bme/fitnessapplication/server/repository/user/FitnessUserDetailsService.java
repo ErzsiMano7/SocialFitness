@@ -1,6 +1,6 @@
-package hu.bme.fitnessapplication.server.user.service;
+package hu.bme.fitnessapplication.server.repository.user;
 
-import hu.bme.fitnessapplication.server.user.data.User;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,13 +1,11 @@
-package hu.bme.fitnessapplication.server.event;
+package hu.bme.fitnessapplication.server.repository.event.dto;
 
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import hu.bme.fitnessapplication.server.BaseDTO;
-import hu.bme.fitnessapplication.server.user.data.User;
-import hu.bme.fitnessapplication.server.user.service.UserRepository;
+import hu.bme.fitnessapplication.server.repository.event.Event;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
 import lombok.Getter;
 import lombok.Setter;
 

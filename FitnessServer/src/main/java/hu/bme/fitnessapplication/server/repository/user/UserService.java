@@ -1,9 +1,9 @@
-package hu.bme.fitnessapplication.server.user.service;
+package hu.bme.fitnessapplication.server.repository.user;
 
 import hu.bme.fitnessapplication.server.BaseService;
-import hu.bme.fitnessapplication.server.user.data.Role;
-import hu.bme.fitnessapplication.server.user.data.User;
-import hu.bme.fitnessapplication.server.user.data.UserRole;
+import hu.bme.fitnessapplication.server.repository.user.model.Role;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
+import hu.bme.fitnessapplication.server.repository.user.model.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,10 +57,8 @@ public class UserService implements BaseService<User> {
     @Override
     public User create(User entity) {
 
-        //Validate
         validate(entity);
 
-        //Encode the password
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
 
         if (userRepository.findByUsername(entity.getUsername()) != null) {
@@ -92,10 +89,8 @@ public class UserService implements BaseService<User> {
         //Validate the updated
         validate(updated);
 
-        //Encode the password
         updated.setPassword(passwordEncoder.encode(updated.getPassword()));
 
-        // Update the existing with the new
         existing.setDisplayName(updated.getDisplayName());
         existing.setUsername(updated.getUsername());
         existing.setRole(updated.getRole());

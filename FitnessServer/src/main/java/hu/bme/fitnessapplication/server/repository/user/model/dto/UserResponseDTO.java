@@ -1,27 +1,28 @@
-package hu.bme.fitnessapplication.server.user.data;
+package hu.bme.fitnessapplication.server.repository.user.model.dto;
 
 import hu.bme.fitnessapplication.server.BaseDTO;
+import hu.bme.fitnessapplication.server.repository.user.model.Role;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
+import hu.bme.fitnessapplication.server.repository.user.model.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserRequestDTO extends BaseDTO<User> {
+public class UserResponseDTO extends BaseDTO<User> {
 	private static final long serialVersionUID = -1410169654429767330L;
 
 	protected String username;
 
-    protected String password;
+    protected String role;
     
     protected String displayName;
 
-    protected String role;
-
-    public UserRequestDTO() {
+    public UserResponseDTO() {
 
     }
 
-    public UserRequestDTO(User user) {
+    public UserResponseDTO(User user) {
         if (user != null) {
             if (user.getId() != null) {
                 this.id = user.getId().toString();
@@ -37,9 +38,8 @@ public class UserRequestDTO extends BaseDTO<User> {
         User user = new User();
 
         user.setUsername(username);
-        user.setPassword(password); //This will be encrypted later
-        user.setDisplayName(displayName);
         user.setRole(new UserRole(user, Role.valueOf(role)));
+        user.setDisplayName(displayName);
 
         return user;
     }

@@ -1,18 +1,16 @@
-package hu.bme.fitnessapplication.server.event;
+package hu.bme.fitnessapplication.server.repository.event;
 
-import java.util.Date;
-import java.util.List;
+import hu.bme.fitnessapplication.server.BaseEntity;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import hu.bme.fitnessapplication.server.BaseEntity;
-import hu.bme.fitnessapplication.server.user.data.User;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter

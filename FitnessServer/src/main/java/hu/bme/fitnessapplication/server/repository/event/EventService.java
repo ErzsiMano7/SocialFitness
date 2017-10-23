@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.server.event;
+package hu.bme.fitnessapplication.server.repository.event;
 
 import java.util.List;
 import java.util.UUID;

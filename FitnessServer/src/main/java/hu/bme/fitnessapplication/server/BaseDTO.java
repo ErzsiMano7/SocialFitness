@@ -3,7 +3,7 @@ package hu.bme.fitnessapplication.server;
 import java.io.Serializable;
 
 /**
- * DTOs are "flat" verisons of entities, only containing the data required on the frontend.
+ * DTOs are "flat" verisons of entities, only containing the model required on the frontend.
  */
 public abstract class BaseDTO<Entity extends BaseEntity> implements Serializable {
 

@@ -1,11 +1,11 @@
-package hu.bme.fitnessapplication.server.user;
+package hu.bme.fitnessapplication.server.endpoint.user;
 
 import hu.bme.fitnessapplication.server.BaseService;
-import hu.bme.fitnessapplication.server.user.data.Role;
-import hu.bme.fitnessapplication.server.user.data.User;
-import hu.bme.fitnessapplication.server.user.data.UserRequestDTO;
-import hu.bme.fitnessapplication.server.user.data.UserResponseDTO;
-import hu.bme.fitnessapplication.server.user.service.UserService;
+import hu.bme.fitnessapplication.server.repository.user.model.Role;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
+import hu.bme.fitnessapplication.server.repository.user.model.dto.UserRequestDTO;
+import hu.bme.fitnessapplication.server.repository.user.model.dto.UserResponseDTO;
+import hu.bme.fitnessapplication.server.repository.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(path = "/me", method = RequestMethod.GET)
-    public ResponseEntity<UserResponseDTO> getMe() {
+    public ResponseEntity getMe() {
         User me = userService.getLoggedInUser();
         if (me != null) {
             return ResponseEntity.ok(new UserResponseDTO(me));
@@ -53,7 +53,7 @@ public class UserController {
 
     @RequestMapping(path = "/{userId}", method = RequestMethod.GET)
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable String userId) {
+    public ResponseEntity getUserById(@PathVariable String userId) {
         try {
             UUID id = UUID.fromString(userId);
             User user = userService.findById(id);
@@ -125,7 +125,7 @@ public class UserController {
 
         for (User user : users) {
         	if(user.getRole().getRole().name().equals(Role.ROLE_GYM))
-            result.add(new UserResponseDTO(user));
+        		result.add(new UserResponseDTO(user));
         }
 
         return ResponseEntity.ok(result);
@@ -138,7 +138,7 @@ public class UserController {
 
         for (User user : users) {
         	if(user.getRole().getRole().name().equals(Role.ROLE_TRAINER))
-            result.add(new UserResponseDTO(user));
+        		result.add(new UserResponseDTO(user));
         }
 
         return ResponseEntity.ok(result);
@@ -151,7 +151,7 @@ public class UserController {
 
         for (User user : users) {
         	if(user.getRole().getRole().name().equals(Role.ROLE_USER))
-            result.add(new UserResponseDTO(user));
+        		result.add(new UserResponseDTO(user));
         }
 
         return ResponseEntity.ok(result);

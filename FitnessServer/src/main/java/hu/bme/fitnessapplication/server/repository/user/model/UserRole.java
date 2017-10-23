@@ -1,4 +1,4 @@
-package hu.bme.fitnessapplication.server.user.data;
+package hu.bme.fitnessapplication.server.repository.user.model;
 
 import hu.bme.fitnessapplication.server.BaseEntity;
 import lombok.Getter;

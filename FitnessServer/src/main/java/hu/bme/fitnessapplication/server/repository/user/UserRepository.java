@@ -1,6 +1,6 @@
-package hu.bme.fitnessapplication.server.user.service;
+package hu.bme.fitnessapplication.server.repository.user;
 
-import hu.bme.fitnessapplication.server.user.data.User;
+import hu.bme.fitnessapplication.server.repository.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

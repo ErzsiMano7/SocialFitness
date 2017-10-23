@@ -1,6 +1,6 @@
 package hu.bme.fitnessapplication.server.configuration.security;
 
-import hu.bme.fitnessapplication.server.user.service.FitnessUserDetailsService;
+import hu.bme.fitnessapplication.server.repository.user.FitnessUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
