@@ -122,19 +122,6 @@ public class UserController extends BaseController {
         }
     }
 
-    @RequestMapping(path = "/gyms", method = RequestMethod.GET)
-    public ResponseEntity getGyms() {
-        List<User> users = userService.findAll();
-        List<UserResponseDTO> result = new ArrayList<>();
-
-        for (User user : users) {
-            if (user.getRole().getRole().name().equals(Role.ROLE_GYM))
-                result.add(new UserResponseDTO(user));
-        }
-
-        return ResponseEntity.ok(result);
-    }
-
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public ResponseEntity getUsers() {
         List<User> users = userService.findAll();

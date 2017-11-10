@@ -13,20 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("TrainerController_v1")
-@RequestMapping("v1/users/trainers")
-public class TrainerController {
-
+@RestController("GymController_v1")
+@RequestMapping("v1/users/gyms")
+public class GymController {
     @Autowired
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getTrainers() {
+    public ResponseEntity getGyms() {
         List<User> users = userService.findAll();
         List<UserResponseDTO> result = new ArrayList<>();
 
         for (User user : users) {
-            if (user.getRole().getRole().name().equals(Role.ROLE_TRAINER))
+            if (user.getRole().getRole().name().equals(Role.ROLE_GYM))
                 result.add(new UserResponseDTO(user));
         }
 
